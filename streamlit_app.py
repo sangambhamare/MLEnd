@@ -68,11 +68,14 @@ def app():
         # Predict using the model
         prediction = model.predict(features)
 
-        # Decode the prediction
-        label = label_encoder.inverse_transform(prediction)
+        # Decode the prediction (map 0 to 'False' and 1 to 'True')
+        if prediction[0] == 1:
+            label = "True"
+        else:
+            label = "False"
 
         # Display the result
-        st.write(f"Prediction: The story is **{label[0]}**.")
+        st.write(f"Prediction: The story is **{label}**.")
 
 # Run the app
 if __name__ == "__main__":
