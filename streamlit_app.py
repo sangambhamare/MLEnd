@@ -11,7 +11,7 @@ label_encoder = joblib.load('label_encoder.pkl')  # Load the label encoder
 # Define the feature names in the order used during training
 feature_columns = ['Power', 'Pitch Mean', 'Pitch Variance', 'Voiced Fraction']
 
-# Feature extraction function
+# Feature extraction function (including additional features like MFCC and Chroma)
 def extract_features(file):
     # Load the audio file with librosa (ensure 30-second duration)
     y, sr = librosa.load(file, sr=None, duration=30)  # Duration fixed to 30 seconds
@@ -30,6 +30,14 @@ def extract_features(file):
     voiced_frames = librosa.effects.split(y)  # Find voiced segments
     voiced_fraction = sum(np.diff(frames) for frames in voiced_frames) / len(y)
     
+    # Extract additional features like MFCC and Chroma (for feature exploration)
+    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+    chroma = librosa.feature.chroma_stft(y=y, sr=sr)
+    
+    # Print the MFCC and Chroma for feature exploration (optional)
+    print("MFCC:", mfcc)
+    print("Chroma:", chroma)
+    
     # Create a DataFrame with the features in the same order as during training
     features = pd.DataFrame({
         'Power': [power],
@@ -38,7 +46,7 @@ def extract_features(file):
         'Voiced Fraction': [voiced_fraction]  # Added Voiced Fraction
     })
 
-    # Ensure the columns are in the same order as the model expects
+    # Ensure the columns are in the same order as the model expects (filter out extra features like MFCC, Chroma)
     features = features[feature_columns]  # Reorder the columns if necessary
     
     return features
