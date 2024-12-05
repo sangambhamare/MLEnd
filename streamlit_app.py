@@ -77,6 +77,15 @@ def app():
         # Display the result
         st.write(f"Prediction: The story is **{label}**.")
 
+        # Disclaimer
+        st.write("**Disclaimer**: Predictions can be wrong sometimes. The model is based on audio features and may not always be accurate.")
+
+    # Copyright notice
+    st.markdown("""
+    ---
+    **All Rights Reserved to Sangam S Bhamare 2024**
+    """)
+
 # Run the app
 if __name__ == "__main__":
     app()
