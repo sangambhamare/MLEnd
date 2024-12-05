@@ -1,10 +1,6 @@
-mlend==1.0.0.4
+streamlit
+joblib
 librosa
-scikit-learn
 pandas
 numpy
-matplotlib
-seaborn
-soundfile
-joblib
-streamlit
+scikit-learn
