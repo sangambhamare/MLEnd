@@ -948,7 +948,6 @@ joblib.dump(rf_model, 'best_model.joblib')
 
 joblib.dump(label_encoder, 'label_encoder.pkl')  # Save the label encoder
 
-pip install streamlit
 import streamlit as st
 import librosa
 import soundfile as sf
