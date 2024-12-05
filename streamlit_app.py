@@ -8,6 +8,9 @@ import joblib
 model = joblib.load('best_model.joblib')  # Load your pre-trained model
 label_encoder = joblib.load('label_encoder.pkl')  # Load the label encoder
 
+# Define the feature names in the order used during training
+feature_columns = ['Power', 'Pitch Mean', 'Pitch Variance', 'Voiced Fraction']
+
 # Feature extraction function
 def extract_features(file):
     # Load the audio file with librosa (ensure 30-second duration)
@@ -27,13 +30,16 @@ def extract_features(file):
     voiced_frames = librosa.effects.split(y)  # Find voiced segments
     voiced_fraction = sum(np.diff(frames) for frames in voiced_frames) / len(y)
     
-    # Return the features as a DataFrame (this is just an example)
+    # Create a DataFrame with the features in the same order as during training
     features = pd.DataFrame({
+        'Power': [power],
         'Pitch Mean': [pitch_mean],
         'Pitch Variance': [pitch_variance],
-        'Power': [power],
         'Voiced Fraction': [voiced_fraction]  # Added Voiced Fraction
     })
+
+    # Ensure the columns are in the same order as the model expects
+    features = features[feature_columns]  # Reorder the columns if necessary
     
     return features
 
