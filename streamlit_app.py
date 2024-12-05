@@ -4,8 +4,6 @@ import librosa
 import soundfile as sf
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-import matplotlib.pyplot as plt
 
 # Load the trained model and label encoder
 model = joblib.load('best_model.joblib')
