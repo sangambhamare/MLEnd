@@ -68,7 +68,7 @@ In summary, the methodology involves preprocessing the data, training various mo
 We begin by installing the necessary libraries for feature extraction, audio processing, and machine learning. We will use `librosa` for audio manipulation, `sklearn` for machine learning, and other necessary libraries.
 """
 
-!pip install mlend==1.0.0.4 librosa scikit-learn
+pip install mlend==1.0.0.4 librosa scikit-learn
 
 """#### **Import Libraries and Download Dataset**
 After installing the necessary libraries, we import the required modules and download the dataset for deception detection.
@@ -950,7 +950,7 @@ joblib.dump(rf_model, 'best_model.joblib')
 
 joblib.dump(label_encoder, 'label_encoder.pkl')  # Save the label encoder
 
-!pip install streamlit
+pip install streamlit
 import streamlit as st
 import librosa
 import soundfile as sf
