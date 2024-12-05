@@ -1,0 +1,10 @@
+mlend==1.0.0.4
+librosa
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+soundfile
+joblib
+streamlit
